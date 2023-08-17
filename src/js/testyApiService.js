@@ -12,6 +12,7 @@ export default class TestyApiService {
     constructor() {
         this.params = {};
         this.params.category = '';
+        this.params.limit = 9;
     }
 
     async getCategories() {
@@ -23,6 +24,10 @@ export default class TestyApiService {
 
     setCategory(name) {
         this.params.category = name;
+    }
+
+    setPerPage(num) {
+        this.params.limit = num;
     }
 
     setSearchText(name) {

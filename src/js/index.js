@@ -2,6 +2,7 @@ import TestyApiService from './testyApiService';
 const testyApiService = new TestyApiService();
 const recipeList = document.querySelector('.recipe-list');
 const categoryList = document.querySelector('.category-list');
+const content = document.querySelector('.content');
 
 categoryList.addEventListener("click", function (e) {
     console.log(e.target.dataset.recipeCategory);
@@ -20,10 +21,12 @@ testyApiService.getCategories().then(data => {
 renewRecipes();
 
 function renewRecipes() {
-    recipeList.innerHTML = '';
+    content.innerHTML = '';
     testyApiService.getRecipes().then(data => {
         data.results.forEach(recipe => {
-            recipeList.innerHTML += `<li>${recipe.title}</li>`
+            content.innerHTML += `<div><img class="card-img" src="${recipe.preview
+                }"/></div>`
+
         });
         console.log(data)
     });
