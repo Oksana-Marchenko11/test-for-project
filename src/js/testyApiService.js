@@ -1,18 +1,16 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api';
-// const searchParams = new URLSearchParams({
-//     image_type: 'photo',
-//     orientation: 'horizontal',
-//     safesearch: 'true',
-//     per_page: 40,
-// });
 
 export default class TestyApiService {
     constructor() {
         this.params = {};
         this.params.category = '';
         this.params.limit = 9;
+        this.params.title = '';
+        this.params.ingredient = '';
+        this.params.area = '';
+        this.params.time = '';
     }
 
     async getCategories() {
@@ -30,8 +28,15 @@ export default class TestyApiService {
         this.params.limit = num;
     }
 
-    setSearchText(name) {
-        this.params.st = name;
+    setSearchText(text) {
+        this.params.title = text;
+    }
+
+    setSearchIngredient(ingredient) {
+        this.params.ingredient = ingredient;
+    }
+    setSearchArea(area) {
+        this.params.area = area;
     }
 
     async getRecipes() {
@@ -43,4 +48,28 @@ export default class TestyApiService {
         );
         return response.data;
     }
+
+    async getAreas() {
+        const response = await axios.get(
+            `${BASE_URL}/areas`
+        );
+        console.log(response.data)
+        return response.data;
+    }
+
+    async getIngredients() {
+        const response = await axios.get(
+            `${BASE_URL}/ingredients`
+        );
+        console.log(response.data)
+        return response.data;
+    }
+
+    setSearchTime(time) {
+        this.params.time = time;
+    }
+
 }
+
+
+
